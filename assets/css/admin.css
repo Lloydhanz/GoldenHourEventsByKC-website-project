@@ -1,0 +1,85 @@
+.admin-header {
+  padding-top: 140px;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.admin-header h1 {
+  color: var(--gold);
+  font-size: 3rem;
+}
+
+.admin-container {
+  padding: 50px 8%;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 40px;
+}
+
+.booking-form,
+.booking-list {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.booking-form h2,
+.booking-list h2 {
+  margin-bottom: 20px;
+  color: var(--gold);
+}
+
+.booking-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.booking-form button {
+  padding: 15px;
+  border: none;
+  background: var(--gold);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: var(--gold);
+  color: white;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .admin-container {
+    grid-template-columns: 1fr;
+  }
+}

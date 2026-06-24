@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Golden Event Hours by KC</title>
+
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/gallery.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h2>Golden Event Hours by KC</h2>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="gallery-hero">
+      <div class="overlay"></div>
+
+      <div class="hero-content">
+        <h1>Event Gallery</h1>
+        <p>A collection of memorable celebrations and successful events.</p>
+      </div>
+    </section>
+
+    <!-- FILTERS -->
+
+    <section class="gallery-section">
+      <div class="section-title">
+        <h2>Our Portfolio</h2>
+      </div>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+
+        <button class="filter-btn" data-filter="wedding">Weddings</button>
+
+        <button class="filter-btn" data-filter="birthday">Birthdays</button>
+
+        <button class="filter-btn" data-filter="debut">Debuts</button>
+
+        <button class="filter-btn" data-filter="corporate">Corporate</button>
+      </div>
+
+      <!-- GALLERY -->
+
+      <div class="gallery-grid">
+        <!-- WEDDING -->
+
+        <div class="gallery-item wedding">
+          <img src="https://picsum.photos/600/500?random=1" />
+        </div>
+
+        <div class="gallery-item wedding">
+          <img src="https://picsum.photos/600/500?random=2" />
+        </div>
+
+        <!-- BIRTHDAY -->
+
+        <div class="gallery-item birthday">
+          <img src="https://picsum.photos/600/500?random=3" />
+        </div>
+
+        <div class="gallery-item birthday">
+          <img src="https://picsum.photos/600/500?random=4" />
+        </div>
+
+        <!-- DEBUT -->
+
+        <div class="gallery-item debut">
+          <img src="https://picsum.photos/600/500?random=5" />
+        </div>
+
+        <div class="gallery-item debut">
+          <img src="https://picsum.photos/600/500?random=6" />
+        </div>
+
+        <!-- CORPORATE -->
+
+        <div class="gallery-item corporate">
+          <img src="https://picsum.photos/600/500?random=7" />
+        </div>
+
+        <div class="gallery-item corporate">
+          <img src="https://picsum.photos/600/500?random=8" />
+        </div>
+
+        <!-- EXTRA -->
+
+        <div class="gallery-item wedding">
+          <img src="https://picsum.photos/600/500?random=9" />
+        </div>
+
+        <div class="gallery-item birthday">
+          <img src="https://picsum.photos/600/500?random=10" />
+        </div>
+
+        <div class="gallery-item debut">
+          <img src="https://picsum.photos/600/500?random=11" />
+        </div>
+
+        <div class="gallery-item corporate">
+          <img src="https://picsum.photos/600/500?random=12" />
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+
+    <div class="lightbox" id="lightbox">
+      <span class="close-btn">&times;</span>
+
+      <img class="lightbox-image" id="lightbox-image" />
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <h3>Golden Event Hours by KC</h3>
+
+      <p>Making Every Moment Golden</p>
+
+      <p>© 2026 All Rights Reserved</p>
+    </footer>
+
+    <script src="assets/js/gallery.js"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar | Golden Event Hours by KC</title>
+
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/calendar.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h2>Golden Event Hours by KC</h2>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="calendar-hero">
+      <div class="overlay"></div>
+
+      <div class="hero-content">
+        <h1>Booking Calendar</h1>
+        <p>View available dates and booked schedules.</p>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+
+    <section class="calendar-section">
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button id="prevMonth">◀</button>
+
+          <h2 id="monthYear"></h2>
+
+          <button id="nextMonth">▶</button>
+        </div>
+
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+
+        <div id="calendarDays" class="calendar-days"></div>
+      </div>
+
+      <!-- SLOT DISPLAY -->
+
+      <div class="booking-panel">
+        <h2 id="selectedDate">Select a Date</h2>
+
+        <div class="slots-container">
+          <div class="booked-slots">
+            <h3>Booked Slots</h3>
+
+            <ul id="bookedList"></ul>
+          </div>
+
+          <div class="available-slots">
+            <h3>Available Slots</h3>
+
+            <ul id="availableList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <h3>Golden Event Hours by KC</h3>
+
+      <p>Making Every Moment Golden</p>
+
+      <p>© 2026 All Rights Reserved</p>
+    </footer>
+
+    <script src="assets/js/calendar.js"></script>
+  </body>
+</html>
