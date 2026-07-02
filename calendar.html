@@ -7,6 +7,16 @@
 
     <link rel="stylesheet" href="assets/css/global.css" />
     <link rel="stylesheet" href="assets/css/calendar.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("jcXiPaXYj5_yXBrk2");
+      })();
+    </script>
+    <script src="assets/js/admin-login.js" defer></script>
   </head>
   <body>
     <header>
@@ -22,6 +32,7 @@
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="calendar.html">Calendar</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="#" id="settingsLink">⚙️ Settings</a></li>
         </ul>
       </nav>
     </header>
@@ -92,5 +103,111 @@
     </footer>
 
     <script src="assets/js/calendar.js"></script>
+    <div
+      id="settingsModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(74, 62, 61, 0.6);
+        z-index: 10000;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div
+        style="
+          background: var(--white);
+          padding: 30px;
+          border-radius: 12px;
+          width: 320px;
+          text-align: center;
+          position: relative;
+          margin: 15% auto;
+          box-shadow: 0px 10px 30px rgba(74, 62, 61, 0.2);
+          border: 1px solid var(--elegant-beige);
+        "
+      >
+        <span
+          id="closeModalBtn"
+          style="
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--palette-dark);
+            opacity: 0.7;
+          "
+          >&times;</span
+        >
+
+        <h3
+          style="
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--palette-dark);
+            font-weight: 600;
+          "
+        >
+          Admin Access
+        </h3>
+
+        <div style="margin-bottom: 15px">
+          <input
+            type="text"
+            id="accessCodeInput"
+            placeholder="Enter Access Code"
+            style="
+              width: 100%;
+              padding: 12px;
+              box-sizing: border-box;
+              border: 1px solid var(--elegant-beige);
+              border-radius: 6px;
+              color: var(--palette-dark);
+              text-align: center;
+              background-color: var(--pinkish-clear);
+            "
+          />
+        </div>
+
+        <button
+          id="sendCodeBtn"
+          style="
+            width: 100%;
+            padding: 12px;
+            background-color: var(--elegant-beige);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            font-weight: 600;
+          "
+        >
+          Send a code
+        </button>
+
+        <button
+          id="loginAdminBtn"
+          style="
+            width: 100%;
+            padding: 12px;
+            background-color: var(--palette-dark);
+            color: var(--pinkish-clear);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+          "
+        >
+          Unlock & Login
+        </button>
+      </div>
+    </div>
   </body>
 </html>
