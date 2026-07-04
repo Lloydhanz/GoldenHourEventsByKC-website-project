@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "url": "https://picsum.photos/600/500?random=1",
+      "category": "wedding"
+    },
+    {
+      "id": "2",
+      "url": "https://picsum.photos/600/500?random=2",
+      "category": "wedding"
+    },
+    {
+      "id": "3",
+      "url": "https://picsum.photos/600/500?random=3",
+      "category": "birthday"
+    },
+    {
+      "id": "4",
+      "url": "https://picsum.photos/600/500?random=4",
+      "category": "birthday"
+    },
+    {
+      "id": "5",
+      "url": "https://picsum.photos/600/500?random=5",
+      "category": "debut"
+    },
+    {
+      "id": "6",
+      "url": "https://picsum.photos/600/500?random=6",
+      "category": "debut"
+    },
+    {
+      "id": "7",
+      "url": "https://picsum.photos/600/500?random=7",
+      "category": "corporate"
+    },
+    {
+      "id": "8",
+      "url": "https://picsum.photos/600/500?random=8",
+      "category": "corporate"
+    },
+    {
+      "id": "9",
+      "url": "https://picsum.photos/600/500?random=9",
+      "category": "wedding"
+    },
+    {
+      "id": "10",
+      "url": "https://picsum.photos/600/500?random=10",
+      "category": "birthday"
+    },
+    {
+      "id": "11",
+      "url": "https://picsum.photos/600/500?random=11",
+      "category": "debut"
+    },
+    {
+      "id": "12",
+      "url": "https://picsum.photos/600/500?random=12",
+      "category": "corporate"
+    }
+  ]
+}

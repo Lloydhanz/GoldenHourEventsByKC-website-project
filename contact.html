@@ -13,10 +13,15 @@
     ></script>
     <script type="text/javascript">
       (function () {
-        emailjs.init("jcXiPaXYj5_yXBrk2");
+        if (window.emailjs) {
+          emailjs.init("jcXiPaXYj5_yXBrk2");
+        }
       })();
     </script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/admin-auth.js"></script>
     <script src="assets/js/admin-login.js" defer></script>
+    <script src="assets/js/contact.js" defer></script>
   </head>
   <body>
     <header>
@@ -56,21 +61,47 @@
       <div class="contact-form-card">
         <h2>Send Us a Message</h2>
 
-        <form>
-          <input type="text" placeholder="Full Name" required />
+        <form id="contactForm">
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="Full Name"
+            required
+          />
 
-          <input type="email" placeholder="Email Address" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
 
-          <input type="tel" placeholder="Phone Number" />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
+          />
 
-          <input type="text" placeholder="Event Type" />
+          <input
+            type="text"
+            id="eventType"
+            name="eventType"
+            placeholder="Event Type"
+          />
 
           <textarea
+            id="message"
+            name="message"
             rows="6"
             placeholder="Tell us about your event..."
+            required
           ></textarea>
 
-          <button type="submit">Send Inquiry</button>
+          <button type="submit" id="submitBtn">Send Inquiry</button>
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
         </form>
       </div>
 

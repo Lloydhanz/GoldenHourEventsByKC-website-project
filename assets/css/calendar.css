@@ -138,6 +138,19 @@
   margin-bottom: 10px;
 }
 
+.day.has-bookings {
+  background: rgba(198, 167, 94, 0.25);
+  font-weight: 600;
+}
+
+.calendar-status {
+  text-align: center;
+  padding: 12px 8%;
+  background: #fff3cd;
+  color: #856404;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .slots-container {
     grid-template-columns: 1fr;
