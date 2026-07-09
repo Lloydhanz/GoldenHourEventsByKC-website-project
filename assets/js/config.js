@@ -10,13 +10,11 @@ const CONFIG = {
     PUBLIC_KEY: "jcXiPaXYj5_yXBrk2",
     SERVICE_ID: "service_2uoyv9v",
     OTP_TEMPLATE_ID: "template_s90z2wg",
-    CONTACT_TEMPLATE_ID: "template_contact_inquiry",
+    CONTACT_TEMPLATE_ID: "template_6f47y6p",
   },
 
-  ADMIN_EMAIL: "jacquesnikko@gmail.com",
+  ADMIN_EMAIL: "goldenhourseventkcwork@gmail.com",
   ADMIN_API_TOKEN: "goldenhourmoments",
 
-  // Contact form recipient. For launch, change this back to:
-  // CONTACT_EMAIL: "goldeneventhours@gmail.com",
-  CONTACT_EMAIL: "jacquesnikko@gmail.com",
+  CONTACT_EMAIL: "goldenhourseventkcwork@gmail.com",
 };

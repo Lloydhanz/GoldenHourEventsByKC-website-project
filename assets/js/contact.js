@@ -5,6 +5,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form) return;
 
+  function getTemplateParams(inquiry) {
+    const formattedMessage = [
+      "New inquiry from Golden Event Hours by KC",
+      "",
+      `Name: ${inquiry.fullName}`,
+      `Email: ${inquiry.email}`,
+      `Phone: ${inquiry.phone || "Not provided"}`,
+      `Event Type: ${inquiry.eventType || "Not specified"}`,
+      "",
+      "Message:",
+      inquiry.message,
+    ].join("\n");
+
+    return {
+      to_email: inquiry.toEmail,
+      contact_email: inquiry.toEmail,
+      admin_email: inquiry.toEmail,
+      from_name: inquiry.fullName,
+      name: inquiry.fullName,
+      full_name: inquiry.fullName,
+      from_email: inquiry.email,
+      email: inquiry.email,
+      reply_to: inquiry.email,
+      phone: inquiry.phone || "Not provided",
+      event_type: inquiry.eventType || "Not specified",
+      eventType: inquiry.eventType || "Not specified",
+      access_code: "New Website Inquiry",
+      code: "New Website Inquiry",
+      otp: "New Website Inquiry",
+      passcode: "New Website Inquiry",
+      message: formattedMessage,
+      subject: "New inquiry from Golden Event Hours by KC",
+    };
+  }
+
+  async function sendWithTemplate(templateId, inquiry) {
+    if (!window.emailjs || !CONFIG?.EMAILJS) {
+      throw new Error("EmailJS is not loaded. Refresh the page and try again.");
+    }
+
+    await emailjs.send(
+      CONFIG.EMAILJS.SERVICE_ID,
+      templateId,
+      getTemplateParams(inquiry),
+      CONFIG.EMAILJS.PUBLIC_KEY,
+    );
+  }
+
+  async function sendInquiry(inquiry) {
+    await sendWithTemplate(CONFIG.EMAILJS.CONTACT_TEMPLATE_ID, inquiry);
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -23,37 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
     formStatus.className = "form-status";
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${inquiry.toEmail}`, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: inquiry.fullName,
-          email: inquiry.email,
-          phone: inquiry.phone || "Not provided",
-          event_type: inquiry.eventType || "Not specified",
-          message: inquiry.message,
-          _subject: "New inquiry from Golden Event Hours by KC",
-          _template: "table",
-          _captcha: "false",
-        }),
-      });
-
-      if (!response.ok) {
-        const details = await response.text();
-        throw new Error(details || `Request failed (${response.status})`);
-      }
+      await sendInquiry(inquiry);
 
       formStatus.textContent =
         "Thank you! Your message has been sent. We'll get back to you soon.";
       formStatus.classList.add("success");
       form.reset();
     } catch (error) {
-      console.error("EmailJS Error:", error);
-      formStatus.textContent =
-        `Sorry, we couldn't send your message. Please email us directly at ${CONFIG.CONTACT_EMAIL}.`;
+      const details = error?.text || error?.message || String(error);
+      console.error("Contact form send error:", error);
+      formStatus.textContent = `Sorry, we couldn't send your message. ${details}`;
       formStatus.classList.add("error");
     } finally {
       submitBtn.disabled = false;

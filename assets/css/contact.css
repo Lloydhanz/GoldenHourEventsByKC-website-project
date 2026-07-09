@@ -97,24 +97,6 @@
   margin-bottom: 10px;
 }
 
-.map-section {
-  padding: 0 8% 100px;
-}
-
-.map-placeholder {
-  height: 400px;
-
-  border-radius: 20px;
-
-  background: #eee;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 1.2rem;
-}
-
 .contact-cta {
   background: var(--gold);
   color: white;

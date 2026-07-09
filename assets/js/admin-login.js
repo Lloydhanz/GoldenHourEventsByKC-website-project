@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminEmail =
     typeof CONFIG !== "undefined" && CONFIG.ADMIN_EMAIL
       ? CONFIG.ADMIN_EMAIL
-      : "jacquesnikko@gmail.com";
+      : "goldenhourseventkcwork@gmail.com";
   const sendCodeDefaultText = sendCodeBtn
     ? sendCodeBtn.textContent.trim() || "Send a code"
     : "Send a code";
@@ -45,29 +45,65 @@ document.addEventListener("DOMContentLoaded", () => {
     return window.location.pathname.includes("/admin/") ? "" : "admin/";
   }
 
-  async function sendAccessCodeEmail(code) {
-    const response = await fetch(
-      `https://formsubmit.co/ajax/${encodeURIComponent(adminEmail)}`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: "Golden Event Hours Admin Login",
-          email: adminEmail,
-          access_code: code,
-          message: `Your Golden Event Hours admin access code is ${code}. Enter this code in the Admin Access Settings popup to log in.`,
-          _subject: `Golden Event Hours admin login code: ${code}`,
-          _template: "table",
-          _captcha: "false",
-        }),
-      },
+  async function sendAccessCodeWithEmailJS(code) {
+    if (!window.emailjs || !CONFIG?.EMAILJS) {
+      throw new Error("EmailJS is not available");
+    }
+
+    const templateParams = {
+      to_email: adminEmail,
+      email: adminEmail,
+      user_email: adminEmail,
+      admin_email: adminEmail,
+      access_code: code,
+      code,
+      otp: code,
+      passcode: code,
+      name: "Golden Event Hours Admin",
+      title: "Admin Access Code Request",
+      subject: `Golden Event Hours admin login code: ${code}`,
+      message: `Your Golden Event Hours admin access code is ${code}. Enter this code in the Admin Access Settings popup to log in.`,
+    };
+
+    await emailjs.send(
+      CONFIG.EMAILJS.SERVICE_ID,
+      CONFIG.EMAILJS.OTP_TEMPLATE_ID,
+      templateParams,
+      CONFIG.EMAILJS.PUBLIC_KEY,
     );
+  }
+
+  async function sendAccessCodeEmail(code) {
+    try {
+      await sendAccessCodeWithEmailJS(code);
+      return;
+    } catch (emailJsError) {
+      console.warn("EmailJS access code send failed:", emailJsError);
+    }
+
+    const formData = new FormData();
+    Object.entries({
+      name: "Golden Event Hours Admin Login",
+      email: adminEmail,
+      access_code: code,
+      message: `Your Golden Event Hours admin access code is ${code}. Enter this code in the Admin Access Settings popup to log in.`,
+      _subject: `Golden Event Hours admin login code: ${code}`,
+      _template: "table",
+      _captcha: "false",
+    }).forEach(([key, value]) => formData.append(key, value));
+
+    const response = await fetch(`https://formsubmit.co/${adminEmail}`, {
+      method: "POST",
+      body: formData,
+    });
 
     if (!response.ok) {
-      const details = await response.text();
+      let details = "";
+      try {
+        details = await response.text();
+      } catch {
+        details = "";
+      }
       throw new Error(details || `Request failed (${response.status})`);
     }
   }
@@ -125,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Access code email error:", error);
         resetSendCodeButton();
         setSendCodeStatus(
-          "Failed to send the code. Check your internet connection or FormSubmit activation email, then try again.",
+          "Failed to send the email code. Please try again in a moment.",
           "error",
         );
       }
