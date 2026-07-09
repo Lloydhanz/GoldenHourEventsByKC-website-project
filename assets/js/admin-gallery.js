@@ -4,6 +4,12 @@ if (requireAdminPage()) {
   const statusEl = document.getElementById("galleryStatus");
   let items = [];
 
+  const CATEGORY_LABELS = {
+    "polaroid-guestbook": "Polaroid Guestbook",
+    "preshoot-gallery": "Preshoot Gallery",
+    "selfie-mirror": "Selfie Mirror",
+  };
+
   async function loadGallery() {
     try {
       const data = await apiFetch("/api/gallery");
@@ -64,7 +70,7 @@ if (requireAdminPage()) {
       <div class="admin-gallery-item">
         <img src="${item.url.startsWith("/") ? apiUrl(item.url) : item.url}" alt="${item.category}" />
         <div class="admin-gallery-meta">
-          <span class="category-badge">${item.category}</span>
+          <span class="category-badge">${CATEGORY_LABELS[item.category] || item.category}</span>
           <button class="delete-btn" data-id="${item.id}">Remove</button>
         </div>
       </div>`,

@@ -227,8 +227,12 @@ app.get("/api/gallery", (_req, res) => {
 
 app.post("/api/gallery", requireAdmin, upload.single("image"), (req, res) => {
   try {
-    const category = req.body.category || "wedding";
-    const validCategories = ["wedding", "birthday", "debut", "corporate"];
+    const category = req.body.category || "polaroid-guestbook";
+    const validCategories = [
+      "polaroid-guestbook",
+      "preshoot-gallery",
+      "selfie-mirror",
+    ];
     if (!validCategories.includes(category)) {
       return res.status(400).json({ error: "Invalid category" });
     }

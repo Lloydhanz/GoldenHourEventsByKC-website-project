@@ -6,6 +6,12 @@ const closeBtn = document.querySelector(".close-btn");
 
 let galleryItems = [];
 
+const CATEGORY_LABELS = {
+  "polaroid-guestbook": "Polaroid Guestbook",
+  "preshoot-gallery": "Preshoot Gallery",
+  "selfie-mirror": "Selfie Mirror",
+};
+
 async function loadGallery() {
   try {
     const data = await apiFetch("/api/gallery");
@@ -34,7 +40,7 @@ function renderGallery() {
     div.className = `gallery-item ${item.category}`;
     const img = document.createElement("img");
     img.src = item.url.startsWith("/") ? apiUrl(item.url) : item.url;
-    img.alt = `${item.category} event photo`;
+    img.alt = `${CATEGORY_LABELS[item.category] || item.category} event photo`;
     div.appendChild(img);
     galleryGrid.appendChild(div);
   });
