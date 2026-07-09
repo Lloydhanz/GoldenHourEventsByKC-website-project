@@ -16,6 +16,8 @@
         emailjs.init("jcXiPaXYj5_yXBrk2");
       })();
     </script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/admin-auth.js"></script>
     <script src="assets/js/admin-login.js" defer></script>
   </head>
   <body>
@@ -60,76 +62,22 @@
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">All</button>
 
-        <button class="filter-btn" data-filter="wedding">Weddings</button>
+        <button class="filter-btn" data-filter="polaroid-guestbook">
+          Polaroid Guestbook
+        </button>
 
-        <button class="filter-btn" data-filter="birthday">Birthdays</button>
+        <button class="filter-btn" data-filter="preshoot-gallery">
+          Preshoot Gallery
+        </button>
 
-        <button class="filter-btn" data-filter="debut">Debuts</button>
-
-        <button class="filter-btn" data-filter="corporate">Corporate</button>
+        <button class="filter-btn" data-filter="selfie-mirror">
+          Selfie Mirror
+        </button>
       </div>
 
-      <!-- GALLERY -->
+      <!-- GALLERY (loaded dynamically from gallery.json / API) -->
 
-      <div class="gallery-grid">
-        <!-- WEDDING -->
-
-        <div class="gallery-item wedding">
-          <img src="https://picsum.photos/600/500?random=1" />
-        </div>
-
-        <div class="gallery-item wedding">
-          <img src="https://picsum.photos/600/500?random=2" />
-        </div>
-
-        <!-- BIRTHDAY -->
-
-        <div class="gallery-item birthday">
-          <img src="https://picsum.photos/600/500?random=3" />
-        </div>
-
-        <div class="gallery-item birthday">
-          <img src="https://picsum.photos/600/500?random=4" />
-        </div>
-
-        <!-- DEBUT -->
-
-        <div class="gallery-item debut">
-          <img src="https://picsum.photos/600/500?random=5" />
-        </div>
-
-        <div class="gallery-item debut">
-          <img src="https://picsum.photos/600/500?random=6" />
-        </div>
-
-        <!-- CORPORATE -->
-
-        <div class="gallery-item corporate">
-          <img src="https://picsum.photos/600/500?random=7" />
-        </div>
-
-        <div class="gallery-item corporate">
-          <img src="https://picsum.photos/600/500?random=8" />
-        </div>
-
-        <!-- EXTRA -->
-
-        <div class="gallery-item wedding">
-          <img src="https://picsum.photos/600/500?random=9" />
-        </div>
-
-        <div class="gallery-item birthday">
-          <img src="https://picsum.photos/600/500?random=10" />
-        </div>
-
-        <div class="gallery-item debut">
-          <img src="https://picsum.photos/600/500?random=11" />
-        </div>
-
-        <div class="gallery-item corporate">
-          <img src="https://picsum.photos/600/500?random=12" />
-        </div>
-      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
     <!-- LIGHTBOX -->

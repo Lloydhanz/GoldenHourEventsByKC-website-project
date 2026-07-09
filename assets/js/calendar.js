@@ -1,28 +1,40 @@
 const monthYear = document.getElementById("monthYear");
 const calendarDays = document.getElementById("calendarDays");
-
 const bookedList = document.getElementById("bookedList");
 const availableList = document.getElementById("availableList");
-
 const selectedDateText = document.getElementById("selectedDate");
 
 let currentDate = new Date();
-
-const bookings = {
-  "2026-07-15": ["8:00 AM - 10:00 AM", "2:00 PM - 4:00 PM"],
-
-  "2026-07-18": ["10:00 AM - 12:00 PM"],
-
-  "2026-07-25": ["1:00 PM - 5:00 PM"],
-};
-
-const defaultSlots = [
+let bookings = {};
+let defaultSlots = [
   "8:00 AM - 10:00 AM",
   "10:00 AM - 12:00 PM",
   "12:00 PM - 2:00 PM",
   "2:00 PM - 4:00 PM",
   "4:00 PM - 6:00 PM",
 ];
+
+async function loadBookings() {
+  try {
+    const data = await apiFetch("/api/calendar/events");
+    bookings = {};
+    for (const [date, items] of Object.entries(data.bookings || {})) {
+      bookings[date] = items.map((item) =>
+        typeof item === "string" ? item : item.slot,
+      );
+    }
+    if (data.defaultSlots) defaultSlots = data.defaultSlots;
+  } catch (err) {
+    console.warn("Could not load Google Calendar events:", err.message);
+    const statusEl = document.getElementById("calendarStatus");
+    if (statusEl) {
+      statusEl.textContent =
+        "Calendar unavailable — start the server and configure Google Calendar (see SETUP below).";
+      statusEl.style.display = "block";
+    }
+  }
+  renderCalendar();
+}
 
 function renderCalendar() {
   calendarDays.innerHTML = "";
@@ -36,69 +48,72 @@ function renderCalendar() {
   });
 
   const firstDay = new Date(year, month, 1).getDay();
-
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-    const blank = document.createElement("div");
-
-    calendarDays.appendChild(blank);
+    calendarDays.appendChild(document.createElement("div"));
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
     const dayBox = document.createElement("div");
-
     dayBox.classList.add("day");
-
     dayBox.textContent = day;
 
     const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-    dayBox.addEventListener("click", () => {
-      showBookings(dateKey);
-    });
+    if (bookings[dateKey]?.length) {
+      dayBox.classList.add("has-bookings");
+    }
 
+    dayBox.addEventListener("click", () => showBookings(dateKey));
     calendarDays.appendChild(dayBox);
   }
 }
 
 function showBookings(date) {
   selectedDateText.textContent = `Schedule for ${date}`;
-
   bookedList.innerHTML = "";
   availableList.innerHTML = "";
 
   const booked = bookings[date] || [];
 
-  booked.forEach((slot) => {
+  if (booked.length === 0) {
     const li = document.createElement("li");
-
-    li.textContent = slot;
-
+    li.textContent = "No bookings";
+    li.style.opacity = "0.6";
     bookedList.appendChild(li);
-  });
+  } else {
+    booked.forEach((slot) => {
+      const li = document.createElement("li");
+      li.textContent = slot;
+      bookedList.appendChild(li);
+    });
+  }
 
   defaultSlots.forEach((slot) => {
     if (!booked.includes(slot)) {
       const li = document.createElement("li");
-
       li.textContent = slot;
-
       availableList.appendChild(li);
     }
   });
+
+  if (availableList.children.length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "Fully booked";
+    li.style.opacity = "0.6";
+    availableList.appendChild(li);
+  }
 }
 
 document.getElementById("prevMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() - 1);
-
   renderCalendar();
 });
 
 document.getElementById("nextMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() + 1);
-
   renderCalendar();
 });
 
-renderCalendar();
+loadBookings();

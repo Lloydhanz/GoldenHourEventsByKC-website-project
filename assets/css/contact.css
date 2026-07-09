@@ -97,24 +97,6 @@
   margin-bottom: 10px;
 }
 
-.map-section {
-  padding: 0 8% 100px;
-}
-
-.map-placeholder {
-  height: 400px;
-
-  border-radius: 20px;
-
-  background: #eee;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 1.2rem;
-}
-
 .contact-cta {
   background: var(--gold);
   color: white;
@@ -136,6 +118,25 @@
 .contact-cta .btn {
   background: white;
   color: var(--gold);
+}
+
+.contact-form-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  min-height: 1.2em;
+}
+
+.form-status.success {
+  color: #28a745;
+}
+
+.form-status.error {
+  color: #dc3545;
 }
 
 @media (max-width: 900px) {
